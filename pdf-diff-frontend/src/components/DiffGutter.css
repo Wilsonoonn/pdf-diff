@@ -1,0 +1,41 @@
+.diff-gutter {
+  position: absolute;
+  top: 0;
+  /* Position the gutter to the right of its parent container */
+  left: 100%; 
+  margin-left: 15px; /* Create space between PDF and gutter */
+  width: 30px; /* The visual width of the gutter markers */
+  height: 100%; /* This will be the full scrollable height */
+  z-index: 10;
+}
+
+.gutter-marker {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid #ccc;
+  background-color: white;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  font-weight: bold;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.gutter-marker:hover {
+  border-color: #999;
+  background-color: #f0f0f0;
+}
+
+.gutter-marker.active {
+  border-color: #007bff;
+  background-color: #007bff;
+  color: white;
+  transform: translateX(-50%) scale(1.1);
+}

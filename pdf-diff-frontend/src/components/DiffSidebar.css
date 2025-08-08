@@ -1,0 +1,352 @@
+.diff-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 450px;
+  height: 100%;
+  background-color: #ffffff;
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  transition: transform 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  border-left: 1px solid #e0e0e0;
+  max-width: 450px; /* 确保不会超出视口 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-sidebar.open {
+  transform: translateX(0);
+}
+
+.diff-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
+  background-color: #f8f9fa;
+  border-bottom: 1px solid #dee2e6;
+  flex-shrink: 0;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.header-icon {
+  font-size: 1.2em;
+}
+
+.header-title {
+  font-weight: 600;
+  font-size: 1.1em;
+  color: #333;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.diff-sidebar-close {
+  background: none;
+  border: none;
+  font-size: 1.8em;
+  cursor: pointer;
+  color: #6c757d;
+  padding: 0;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.diff-sidebar-close:hover {
+  background-color: #e9ecef;
+  color: #495057;
+}
+
+/* 过滤和搜索控件 */
+.diff-sidebar-controls {
+  padding: 15px 20px;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  flex-shrink: 0;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.controls-row {
+  margin-bottom: 10px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.controls-row:last-child {
+  margin-bottom: 0;
+}
+
+.filter-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  max-width: 100%; /* 确保不会超出容器 */
+}
+
+.filter-btn {
+  background: none;
+  border: 1px solid #dee2e6;
+  padding: 6px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.85em;
+  color: #495057;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+  box-sizing: border-box; /* 确保padding不会导致溢出 */
+}
+
+.filter-btn:hover {
+  background-color: #e9ecef;
+  border-color: #adb5bd;
+}
+
+.filter-btn.active {
+  background-color: #007bff;
+  border-color: #007bff;
+  color: white;
+}
+
+.search-container {
+  width: 100%;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.search-input {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ced4da;
+  border-radius: 4px;
+  font-size: 0.9em;
+  transition: border-color 0.2s ease;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+  box-sizing: border-box; /* 确保padding不会导致溢出 */
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.25);
+}
+
+/* 差异列表容器 */
+.diff-list-container {
+  flex-grow: 1;
+  overflow-y: auto;
+  overflow-x: hidden; /* 防止横向滚动 */
+  padding: 20px;
+  max-width: 100%; /* 确保不会超出容器 */
+}
+
+/* 差异列表 */
+.diff-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-list-item {
+  background-color: white;
+  border: 1px solid #dee2e6;
+  border-radius: 8px;
+  padding: 15px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+  box-sizing: border-box; /* 确保padding不会导致溢出 */
+}
+
+.diff-list-item:hover {
+  border-color: #007bff;
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.diff-list-item.active {
+  border-color: #007bff;
+  background-color: #e3f2fd;
+}
+
+.diff-item-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-icon {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: white;
+  flex-shrink: 0; /* 防止图标被压缩 */
+}
+
+.diff-icon.addition {
+  background-color: #28a745;
+}
+
+.diff-icon.deletion {
+  background-color: #dc3545;
+}
+
+.diff-icon.modification {
+  background-color: #ffc107;
+}
+
+.diff-info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-type {
+  font-weight: 600;
+  font-size: 0.95em;
+  color: #333;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-page {
+  font-size: 0.8em;
+  color: #6c757d;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 差异内容 */
+.diff-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-section {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-label {
+  font-weight: 600;
+  color: #495057;
+  font-size: 0.9em;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.diff-text {
+  background-color: #f8f9fa;
+  padding: 10px;
+  border-radius: 4px;
+  border: 1px solid #dee2e6;
+  font-family: 'Courier New', monospace;
+  font-size: 0.85em;
+  line-height: 1.4;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+  max-height: 120px;
+  overflow-y: auto;
+  overflow-x: hidden; /* 防止横向滚动 */
+  max-width: 100%; /* 确保不会超出容器 */
+}
+
+/* 无差异状态 */
+.no-differences {
+  padding: 40px 20px;
+  text-align: center;
+  color: #6c757d;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+.no-differences p {
+  margin: 0;
+  font-size: 0.9em;
+  max-width: 100%; /* 确保不会超出容器 */
+  overflow: hidden; /* 防止内容溢出 */
+}
+
+/* 滚动条样式 */
+.diff-list-container::-webkit-scrollbar {
+  width: 6px;
+}
+
+.diff-list-container::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.diff-list-container::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 3px;
+}
+
+.diff-list-container::-webkit-scrollbar-thumb:hover {
+  background: #a8a8a8;
+}
+
+.diff-text::-webkit-scrollbar {
+  width: 4px;
+}
+
+.diff-text::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.diff-text::-webkit-scrollbar-thumb {
+  background: #c1c1c1;
+  border-radius: 2px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .diff-sidebar {
+    width: 100%;
+    max-width: 400px;
+  }
+  
+  .filter-buttons {
+    flex-direction: column;
+  }
+  
+  .filter-btn {
+    text-align: left;
+  }
+}
